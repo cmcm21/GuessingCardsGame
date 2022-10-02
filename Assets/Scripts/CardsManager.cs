@@ -7,6 +7,7 @@ using UnityEngine;
 using Random = System.Random;
 using UnityRandom = UnityEngine.Random;
 
+public delegate void CardsLoaded(List<GameObject> cards);
 public class CardsManager : MonoBehaviour
 {
     [SerializeField] private GameObject cardsContainer;
@@ -17,6 +18,8 @@ public class CardsManager : MonoBehaviour
     private List<GameObject> _cardsGos;
     private List<Tile> _cards;
     private List<int> _spritesSelected;
+
+    public CardsLoaded OnCardsLoaded;
 
     private void Awake()
     {
@@ -29,7 +32,8 @@ public class CardsManager : MonoBehaviour
     {
         if (InitializedCards() && ValidateCards())
         {
-           
+            CardsGoShuffle();
+            OnCardsLoaded?.Invoke(_cardsGos);
         }
         else
             Debug.LogError("sprites or cards not valid"); 
@@ -75,6 +79,12 @@ public class CardsManager : MonoBehaviour
     private int GetRandomIndex(int max)
     {
         return UnityRandom.Range(0, max);
+    }
+
+    private void CardsGoShuffle()
+    {
+        var random = new Random();
+        _cardsGos = _cardsGos.OrderBy(obj => random.Next()).ToList();
     }
 }
 

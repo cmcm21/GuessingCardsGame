@@ -308,7 +308,7 @@ MonoBehaviour:
   firstRowYPosition: 2
   secondRowYPosition: -2
   xSpaceBetweenCards: 3
-  animationTime: 0.725
+  animationCardToTargetTime: 0.5
 --- !u!1001 &393386677
 PrefabInstance:
   m_ObjectHideFlags: 0
