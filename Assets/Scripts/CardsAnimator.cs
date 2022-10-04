@@ -21,6 +21,7 @@ public class CardsAnimator : MonoBehaviour
 
     private List<Vector3> _cardsPositions;
     private List<GameObject> _cards;
+    private CardsManager _cardsManager;
 
     public CardsAnimationFinish OnCardsAnimationFinish;
 
@@ -32,9 +33,19 @@ public class CardsAnimator : MonoBehaviour
 
     private void Start()
     {
-        var cardsManager = FindObjectOfType<CardsManager>();
-        if(cardsManager != null)
-            cardsManager.OnCardsLoaded += OnCardsLoaded;
+        _cardsManager = GetComponent<CardsManager>();
+        if(_cardsManager != null)
+            InitCardsAnimation();
+        else
+            Debug.LogError($"[{GetType()}]:: Error: cardsManager is Null");
+    }
+
+    private void InitCardsAnimation()
+    {
+        if(_cardsManager.State == CardsManagerState.STARTED)
+            OnCardsLoaded(_cardsManager.CardsGos);
+        else
+            _cardsManager.OnCardsLoaded += OnCardsLoaded;
     }
 
     private void OnCardsLoaded(List<GameObject> cards)
