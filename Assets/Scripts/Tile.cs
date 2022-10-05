@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum TileState {SHOWED, HIDDED}
+public enum TileState {SHOWED, HIDED}
 public enum TileInputState {ENABLE, DISABLE}
 
 [RequireComponent(typeof(SpriteRenderer))]
@@ -18,6 +18,8 @@ public class Tile : MonoBehaviour
     private TileInputState _inputState;
     private SpriteRenderer _spriteRenderer;
     private CardsAnimator _cardsAnimator;
+    private int _id;
+    public int ID => _id;
 
     private void Start()
     {
@@ -25,7 +27,11 @@ public class Tile : MonoBehaviour
         _inputState = TileInputState.DISABLE;
         Hide();
     }
-
+    public void Init(Sprite sprite, int id)
+    {
+        _originalSprite = sprite;
+        _id = id;
+    }
     public void EnableInputs(bool enable)
     {
         _inputState = enable ? TileInputState.ENABLE : TileInputState.DISABLE;
@@ -39,7 +45,7 @@ public class Tile : MonoBehaviour
 
     private void Toggle()
     {
-        if (_state == TileState.HIDDED)
+        if (_state == TileState.HIDED)
             Show();
         else
             Hide();
@@ -49,16 +55,15 @@ public class Tile : MonoBehaviour
     {
         if(_originalSprite != null) _spriteRenderer.sprite = _originalSprite;
         _state = TileState.SHOWED;
+        Debug.Log($"[{GetType()}]:: Card id: {_id} is showed");
     }
 
     private void Hide()
     {
         if(hiddenSprite != null) _spriteRenderer.sprite = hiddenSprite;
-        _state = TileState.HIDDED;
+        _state = TileState.HIDED;
+        Debug.Log($"[{GetType()}]:: Card id: {_id} is hided");
     }
 
-    public void SetSprite(Sprite sprite)
-    {
-        _originalSprite = sprite;
-    }
+
 }

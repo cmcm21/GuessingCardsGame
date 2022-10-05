@@ -16,8 +16,8 @@ public class CardsManager : MonoBehaviour
 {
     [SerializeField] private GameObject cardsFirstRow;
     [SerializeField] private GameObject cardsSecondRow;
-    [SerializeField] private Sprite[] cardsSprites;
-
+    
+    private Sprite[] _cardsSprites;
     private List<GameObject> _cardsGos;
     public List<GameObject> CardsGos => _cardsGos;
     private List<Tile> _cards;
@@ -39,7 +39,6 @@ public class CardsManager : MonoBehaviour
     private void Start()
     {
         InitReferences();
-        InitCards();
     }
 
     private void InitReferences()
@@ -48,8 +47,19 @@ public class CardsManager : MonoBehaviour
          if(_cardsAnimator == null) 
              Debug.LogError($"[{GetType()}]:: _cardsAnimator is null");
          else
-             _cardsAnimator.OnCardsAnimationFinish += OnCardsAnimationFinish; 
-       
+             _cardsAnimator.OnCardsAnimationFinish += OnCardsAnimationFinish;
+
+         var gameManager = FindObjectOfType<GameManager>();
+         if(gameManager == null)
+             Debug.LogError($"[{GetType()}]:: game manager is null");
+         else
+             gameManager.OnCardsCardsDataLoaded += OnCardsCardsDataLoaded;
+    }
+
+    private void OnCardsCardsDataLoaded(CardsData cardsData)
+    {
+        _cardsSprites = cardsData.Sprites;
+        InitCards();
     }
 
     private void OnCardsAnimationFinish()
@@ -77,7 +87,7 @@ public class CardsManager : MonoBehaviour
         {
             int randomIndex = 0;
             do {
-                randomIndex = GetRandomIndex(cardsSprites.Length);
+                randomIndex = GetRandomIndex(_cardsSprites.Length);
             } while (_spritesSelected.Contains(randomIndex));
             
             _spritesSelected.Add(randomIndex);
@@ -87,7 +97,7 @@ public class CardsManager : MonoBehaviour
                 var tile = child.GetComponent<Tile>();
                 if (tile != null)
                 {
-                    tile.SetSprite(cardsSprites[randomIndex]);
+                    tile.Init(_cardsSprites[randomIndex],randomIndex);
                     InitTile(tile,child.gameObject);
                 }
             }
@@ -107,7 +117,7 @@ public class CardsManager : MonoBehaviour
 
     private bool ValidateCards()
     {
-        return cardsSprites.Length >= _cards.Count && 
+        return _cardsSprites.Length >= _cards.Count && 
                _spritesSelected.Count == cardsSecondRow.transform.childCount;
     }
 

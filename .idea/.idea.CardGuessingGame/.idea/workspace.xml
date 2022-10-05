@@ -6,11 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="91db279b-2993-4102-9e3e-50de204cd6bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CardPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CardPrefab.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +48,10 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/CardsData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -55,23 +61,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.4393531",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "rider.run.widget.enabled.cache": "false",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.4393531&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2020.3.12f1\Editor\Unity.exe" />
@@ -91,10 +97,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="12308">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18720">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="12308" />
+      <option name="pid" value="18720" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -116,6 +122,8 @@
       <workItem from="1664688151060" duration="295000" />
       <workItem from="1664688495521" duration="4203000" />
       <workItem from="1664859947890" duration="2806000" />
+      <workItem from="1664863086721" duration="662000" />
+      <workItem from="1664945187456" duration="3753000" />
     </task>
     <servers />
   </component>
@@ -138,5 +146,141 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsManager.cs</url>
+          <line>60</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsManager.cs" initialLine="60" containingFunctionPresentation="method 'OnCardsCardsDataLoaded'">
+            <startOffsets>
+              <option value="1914" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1948" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsManager.cs</url>
+          <line>61</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsManager.cs" initialLine="61" containingFunctionPresentation="method 'OnCardsCardsDataLoaded'">
+            <startOffsets>
+              <option value="1957" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1969" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
+          <line>26</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="26" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
+            <startOffsets>
+              <option value="932" />
+            </startOffsets>
+            <endOffsets>
+              <option value="981" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
+          <line>27</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="27" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
+            <startOffsets>
+              <option value="994" />
+            </startOffsets>
+            <endOffsets>
+              <option value="995" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
+          <line>28</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="28" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
+            <startOffsets>
+              <option value="1012" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1036" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
+          <line>29</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="29" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
+            <startOffsets>
+              <option value="1053" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1091" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
+          <line>33</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="33" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
+            <startOffsets>
+              <option value="1155" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1210" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs</url>
+          <line>33</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\GameManager.cs" initialLine="33" containingFunctionPresentation="method 'DataManager_OnDataLoaded'">
+            <startOffsets>
+              <option value="897" />
+            </startOffsets>
+            <endOffsets>
+              <option value="939" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs</url>
+          <line>53</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsAnimator.cs" initialLine="53" containingFunctionPresentation="method 'OnCardsLoaded'">
+            <startOffsets>
+              <option value="1461" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1483" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs</url>
+          <line>54</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsAnimator.cs" initialLine="54" containingFunctionPresentation="method 'OnCardsLoaded'">
+            <startOffsets>
+              <option value="1492" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1523" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
