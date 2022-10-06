@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public delegate void CardsAnimationFinish();
@@ -11,9 +12,10 @@ public class CardsAnimator : MonoBehaviour
     [Space]
     [Header("Cards positions info")]
     [SerializeField] private float startXPosition;
-    [SerializeField] private float firstRowYPosition;
-    [SerializeField] private float secondRowYPosition;
+    [SerializeField] private float startYPosition;
+    [SerializeField] private float ySpaceBetweenCards; 
     [SerializeField] private float xSpaceBetweenCards;
+    [SerializeField] private int rows;
 
     [Space] 
     [Header("Starting Animation info")] 
@@ -22,7 +24,6 @@ public class CardsAnimator : MonoBehaviour
     private List<Vector3> _cardsPositions;
     private List<GameObject> _cards;
     private CardsManager _cardsManager;
-
     public CardsAnimationFinish OnCardsAnimationFinish;
 
     private void Awake()
@@ -48,7 +49,7 @@ public class CardsAnimator : MonoBehaviour
             _cardsManager.OnCardsLoaded += OnCardsLoaded;
     }
 
-    private void OnCardsLoaded(List<GameObject> cards)
+    private void OnCardsLoaded(List<GameObject> cards) 
     {
         _cards = cards;
         InitializePositions();
@@ -57,16 +58,18 @@ public class CardsAnimator : MonoBehaviour
 
     private void InitializePositions()
     {
-        for (int i = 0; i < _cards.Count / 2; i++)
+        var cardSizeX = _cardsManager.CardSize.x / 2;
+        var cardSizeY = _cardsManager.CardSize.y / 2;
+        for (int rowNum = 0; rowNum < rows; rowNum++)
         {
-            var position = new Vector3(startXPosition + i * xSpaceBetweenCards, firstRowYPosition, 0);
-            _cardsPositions.Add(position);
-        }
-
-        for (int i = 0; i < _cards.Count / 2; i++)
-        {
-            var position = new Vector3(startXPosition + i * xSpaceBetweenCards, secondRowYPosition, 0);
-            _cardsPositions.Add(position);
+            for (int i = 0; i < _cards.Count / rows; i++)
+            {
+                 var position = new Vector3(
+                     startXPosition + i * xSpaceBetweenCards + cardSizeX * i, 
+                     startYPosition - rowNum * ySpaceBetweenCards - rowNum * cardSizeY,
+                     0);
+                 _cardsPositions.Add(position);               
+            }
         }
     }
 
@@ -74,13 +77,7 @@ public class CardsAnimator : MonoBehaviour
     {
         yield return new WaitForSeconds(animationCardToTargetTime);
 
-        int i = 0;
-        for (; i < _cards.Count / 2; i++)
-            yield return AnimateCardToPosition(_cards[i], _cardsPositions[i]);
-        
-        yield return null;
-
-        for (; i < _cards.Count; i++) 
+        for (int i = 0; i < _cards.Count; i++)
             yield return AnimateCardToPosition(_cards[i], _cardsPositions[i]);
 
         OnCardsAnimationFinish?.Invoke();
@@ -98,5 +95,5 @@ public class CardsAnimator : MonoBehaviour
         card.transform.position = targetPosition;
         yield return null;
     }
-    
+
 }

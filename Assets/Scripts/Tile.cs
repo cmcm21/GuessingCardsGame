@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -65,5 +66,14 @@ public class Tile : MonoBehaviour
         Debug.Log($"[{GetType()}]:: Card id: {_id} is hided");
     }
 
+    public float2 GetTileSize()
+    {
+        Debug.Log($"bounds size: {_originalSprite.bounds.size}");
+        Debug.Log($"extends size: {_originalSprite.bounds.extents}");
+        Debug.Log($"rect size: {_originalSprite.rect.size}");
+        Debug.Log($"border size: {_originalSprite.border}");
+        
+        return new float2(_originalSprite.bounds.extents.x, _originalSprite.bounds.extents.y);
+    }
 
 }

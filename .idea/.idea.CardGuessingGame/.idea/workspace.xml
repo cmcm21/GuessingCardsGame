@@ -7,12 +7,9 @@
     <list default="true" id="91db279b-2993-4102-9e3e-50de204cd6bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,10 +94,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="18720">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="18720" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -123,7 +120,8 @@
       <workItem from="1664688495521" duration="4203000" />
       <workItem from="1664859947890" duration="2806000" />
       <workItem from="1664863086721" duration="662000" />
-      <workItem from="1664945187456" duration="3753000" />
+      <workItem from="1664945187456" duration="3821000" />
+      <workItem from="1665029792186" duration="3363000" />
     </task>
     <servers />
   </component>
@@ -150,32 +148,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsManager.cs</url>
-          <line>60</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsManager.cs" initialLine="60" containingFunctionPresentation="method 'OnCardsCardsDataLoaded'">
-            <startOffsets>
-              <option value="1914" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1948" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsManager.cs</url>
-          <line>61</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsManager.cs" initialLine="61" containingFunctionPresentation="method 'OnCardsCardsDataLoaded'">
-            <startOffsets>
-              <option value="1957" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1969" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
           <line>26</line>
@@ -253,32 +225,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs</url>
-          <line>53</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsAnimator.cs" initialLine="53" containingFunctionPresentation="method 'OnCardsLoaded'">
-            <startOffsets>
-              <option value="1461" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1483" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs</url>
-          <line>54</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\CardsAnimator.cs" initialLine="54" containingFunctionPresentation="method 'OnCardsLoaded'">
-            <startOffsets>
-              <option value="1492" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1523" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

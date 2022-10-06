@@ -7,9 +7,8 @@ using UnityEngine;
 using Random = System.Random;
 using UnityRandom = UnityEngine.Random;
 
-
-//TODO: CHANGE THIS CLASS TO A STATIC CLASS OR A NORMAL CLASS
-//TODO: CREATE A DATA LOADER FOR THE SPRITES AND ITS REFERENCE, USE ADDRESSABLE ASSETS AND SCRIPTABLE OBJECTS 
+//TODO: REFACTOR THIS CODE IN ORDER TO STOP TO USE CARDS FIRST ROW AND CARDS SECOND ROW,
+//TODO: AND ONLY USE ONE OBJECT CONTAINER 
 public delegate void CardsLoaded(List<GameObject> cards);
 public enum CardsManagerState {STARTED,LOADING}
 public class CardsManager : MonoBehaviour
@@ -27,6 +26,8 @@ public class CardsManager : MonoBehaviour
 
     public CardsLoaded OnCardsLoaded;
     private CardsAnimator _cardsAnimator;
+    private float2 _cardSize = float2.zero;
+    public float2 CardSize => _cardSize;
 
     private void Awake()
     {
@@ -100,6 +101,9 @@ public class CardsManager : MonoBehaviour
                     tile.Init(_cardsSprites[randomIndex],randomIndex);
                     InitTile(tile,child.gameObject);
                 }
+
+                if(_cardSize.Equals(float2.zero))
+                    _cardSize = tile.GetTileSize();
             }
         }
         return true;
