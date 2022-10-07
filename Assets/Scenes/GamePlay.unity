@@ -351,7 +351,8 @@ MonoBehaviour:
   ySpaceBetweenCards: 0.5
   xSpaceBetweenCards: 0.5
   rows: 2
-  animationCardToTargetTime: 0.5
+  animationCardToTargetTime: 0.25
+  animate: 1
 --- !u!114 &368234329
 MonoBehaviour:
   m_ObjectHideFlags: 0

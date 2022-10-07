@@ -20,6 +20,7 @@ public class CardsAnimator : MonoBehaviour
     [Space] 
     [Header("Starting Animation info")] 
     [SerializeField] private float animationCardToTargetTime = 0.725f;
+    [SerializeField] private bool animate = true;
 
     private List<Vector3> _cardsPositions;
     private List<GameObject> _cards;
@@ -53,7 +54,10 @@ public class CardsAnimator : MonoBehaviour
     {
         _cards = cards;
         InitializePositions();
-        StartCoroutine(AnimateCards());
+        if(animate)
+            StartCoroutine(AnimateCards());
+        else
+            SetPositions();
     }
 
     private void InitializePositions()
@@ -71,6 +75,13 @@ public class CardsAnimator : MonoBehaviour
                  _cardsPositions.Add(position);               
             }
         }
+    }
+
+    private void SetPositions()
+    {
+        for (int i = 0; i < _cards.Count; i++)
+            _cards[i].transform.position = _cardsPositions[i];
+        OnCardsAnimationFinish?.Invoke();
     }
 
     private IEnumerator AnimateCards()

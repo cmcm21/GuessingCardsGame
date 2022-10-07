@@ -6,9 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="91db279b-2993-4102-9e3e-50de204cd6bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CardPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CardPrefab.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +121,8 @@
       <workItem from="1664859947890" duration="2806000" />
       <workItem from="1664863086721" duration="662000" />
       <workItem from="1664945187456" duration="3821000" />
-      <workItem from="1665029792186" duration="3363000" />
+      <workItem from="1665029792186" duration="3539000" />
+      <workItem from="1665116884609" duration="2633000" />
     </task>
     <servers />
   </component>
@@ -149,71 +150,6 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
-          <line>26</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="26" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
-            <startOffsets>
-              <option value="932" />
-            </startOffsets>
-            <endOffsets>
-              <option value="981" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
-          <line>27</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="27" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
-            <startOffsets>
-              <option value="994" />
-            </startOffsets>
-            <endOffsets>
-              <option value="995" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
-          <line>28</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="28" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
-            <startOffsets>
-              <option value="1012" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1036" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
-          <line>29</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="29" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
-            <startOffsets>
-              <option value="1053" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1091" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Data/DataManager.cs</url>
-          <line>33</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Data\DataManager.cs" initialLine="33" containingFunctionPresentation="method 'AsyncCardsOperationHandleOnCompleted'">
-            <startOffsets>
-              <option value="1155" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1210" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs</url>
           <line>33</line>
           <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\GameManager.cs" initialLine="33" containingFunctionPresentation="method 'DataManager_OnDataLoaded'">
@@ -225,6 +161,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Tile.cs</url>
+          <line>100</line>
+          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Tile.cs" initialLine="97" containingFunctionPresentation="method 'FadeOut'">
+            <startOffsets>
+              <option value="2725" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2807" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
