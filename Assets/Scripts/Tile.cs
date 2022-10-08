@@ -7,7 +7,7 @@ using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 
-public delegate void TurnAnimationFinished();
+public delegate void TurnAnimationFinished(Tile tile);
 public enum TileState {SHOWED, HIDED, ANIMATING}
 public enum TileInputState {ENABLE, DISABLE}
 
@@ -20,19 +20,21 @@ public class Tile : MonoBehaviour
     //TODO: GAME DEFINITION FOR THE CARD ID CORRESPONDING TO THIS CARD
     private Sprite _originalSprite;
     private Vector3 _originalScale;
-    private TileState _state;
     private TileInputState _inputState;
     private SpriteRenderer _spriteRenderer;
     private CardsAnimator _cardsAnimator;
+    private TileState _state;
+    public TileState state => _state;
     private int _id;
     public int ID => _id;
+    public TurnAnimationFinished OnTurnAnimationFinished;
 
     private void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _originalScale = transform.localScale;
         _inputState = TileInputState.DISABLE;
-        Hide();
+        DoAfterHideAnimation();
     }
     public void Init(Sprite sprite, int id)
     {
@@ -47,16 +49,26 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
         if(_inputState == TileInputState.ENABLE)
-            Toggle();
+            Show();
     }
 
-    private void Toggle()
+    private void Show()
     {
         if (_state == TileState.ANIMATING) return;
         if (_state == TileState.HIDED)
             StartCoroutine(TurnAnimation(true));
-        else
+    }
+
+    public void Hide()
+    {
+        if (_state == TileState.ANIMATING) return;
+        if (_state == TileState.SHOWED)
             StartCoroutine(TurnAnimation(false));
+    }
+
+    public void Disable()
+    {
+       gameObject.SetActive(false); 
     }
 
     private IEnumerator TurnAnimation(bool show)
@@ -66,7 +78,7 @@ public class Tile : MonoBehaviour
         yield return FadeIn();
 
         yield return null;
-        if (show) Show(); else Hide();
+        if (show) DoAfterShowAnimation(); else DoAfterHideAnimation();
 
         yield return FadeOut();
 
@@ -107,17 +119,20 @@ public class Tile : MonoBehaviour
         yield return null;
     }
 
-    private void Show()
+    private void DoAfterShowAnimation()
     {
         if(_originalSprite != null) _spriteRenderer.sprite = _originalSprite;
+        _state = TileState.SHOWED;
         Debug.Log($"[{GetType()}]:: Card id: {_id} is showed");
+        OnTurnAnimationFinished?.Invoke(this);
     }
 
-    private void Hide()
+    private void DoAfterHideAnimation()
     {
         if(hiddenSprite != null) _spriteRenderer.sprite = hiddenSprite;
         _state = TileState.HIDED;
         Debug.Log($"[{GetType()}]:: Card id: {_id} is hided");
+        OnTurnAnimationFinished?.Invoke(this);
     }
 
     public float2 GetTileSize()

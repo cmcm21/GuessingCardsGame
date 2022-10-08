@@ -7,19 +7,20 @@ using UnityEngine;
 using Random = System.Random;
 using UnityRandom = UnityEngine.Random;
 
-//TODO: REFACTOR THIS CODE IN ORDER TO STOP TO USE CARDS FIRST ROW AND CARDS SECOND ROW,
-//TODO: AND ONLY USE ONE OBJECT CONTAINER 
 public delegate void CardsLoaded(List<GameObject> cards);
 public enum CardsManagerState {STARTED,LOADING}
 public class CardsManager : MonoBehaviour
 {
-    [SerializeField] private GameObject cardsFirstRow;
-    [SerializeField] private GameObject cardsSecondRow;
+    [SerializeField] private GameObject cardsContainer;
+    [SerializeField] private int comparedCards = 2;
+    [SerializeField] private float restartCardsWaitTime = 0.5f;
+    [SerializeField] private float startWaitTime = 0.5f;
     
     private Sprite[] _cardsSprites;
     private List<GameObject> _cardsGos;
     public List<GameObject> CardsGos => _cardsGos;
     private List<Tile> _cards;
+    private List<Tile> _showingCardsIds;
     private List<int> _spritesSelected;
     private CardsManagerState _state;
     public CardsManagerState State => _state;
@@ -35,6 +36,7 @@ public class CardsManager : MonoBehaviour
         _cardsGos = new List<GameObject>();
         _spritesSelected = new List<int>();
         _state = CardsManagerState.LOADING;
+        _showingCardsIds = new List<Tile>();
     }
 
     private void Start()
@@ -65,8 +67,13 @@ public class CardsManager : MonoBehaviour
 
     private void OnCardsAnimationFinish()
     {
+        EnableCardsInput(true);
+    }
+
+    private void EnableCardsInput(bool value)
+    {
         foreach(var tile in _cards)
-            tile.EnableInputs(true);
+            tile.EnableInputs(value);
     }
 
     private void InitCards()
@@ -74,7 +81,7 @@ public class CardsManager : MonoBehaviour
          if (InitializedCards() && ValidateCards())
          {
              CardsGoShuffle();
-             OnCardsLoaded?.Invoke(_cardsGos);
+             StartCoroutine(WaitThen(() => { OnCardsLoaded?.Invoke(_cardsGos); },startWaitTime));
              _state = CardsManagerState.STARTED;
          }
          else
@@ -83,8 +90,7 @@ public class CardsManager : MonoBehaviour
 
     private bool InitializedCards()
     {
-        if (cardsFirstRow.transform.childCount != cardsSecondRow.transform.childCount) return false;
-        for (int i = 0; i < cardsFirstRow.transform.childCount; i++)
+        for (int i = 0; i < cardsContainer.transform.childCount; i += 2)
         {
             int randomIndex = 0;
             do {
@@ -92,15 +98,12 @@ public class CardsManager : MonoBehaviour
             } while (_spritesSelected.Contains(randomIndex));
             
             _spritesSelected.Add(randomIndex);
-            for (int j = 0; j < transform.childCount; j++)
+            for (int j = i; j <= i + 1; j++)
             {
-                var child = transform.GetChild(j).transform.GetChild(i);
+                var child = cardsContainer.transform.GetChild(j);
                 var tile = child.GetComponent<Tile>();
                 if (tile != null)
-                {
-                    tile.Init(_cardsSprites[randomIndex],randomIndex);
-                    InitTile(tile,child.gameObject);
-                }
+                    InitTile(tile,child.gameObject,randomIndex);
 
                 if(_cardSize.Equals(float2.zero))
                     _cardSize = tile.GetTileSize();
@@ -108,21 +111,78 @@ public class CardsManager : MonoBehaviour
         }
         return true;
     }
-
-    private void InitTile(Tile tile, GameObject tileGo)
+    
+    private void InitTile(Tile tile, GameObject tileGo, int randomIndex)
     {
-         if (tile != null)
-         {
-             _cards.Add(tile);
-             _cardsGos.Add(tileGo);
-             tileGo.gameObject.SetActive(true);
-         }          
+         tile.Init(_cardsSprites[randomIndex],randomIndex);
+         _cards.Add(tile);
+         _cardsGos.Add(tileGo);
+         tileGo.gameObject.SetActive(true);
+         tile.OnTurnAnimationFinished += Tile_OnTurnAnimationFinished;
+    }
+    
+    private void Tile_OnTurnAnimationFinished(Tile tile)
+    {
+        if (tile.state == TileState.SHOWED)
+        {
+           _showingCardsIds.Add(tile);
+           if (_showingCardsIds.Count.Equals(comparedCards))
+           {
+               EnableCardsInput(false); 
+               CheckCards();
+           }
+        }
+        else if (tile.state == TileState.HIDED && _showingCardsIds.Count > 0)
+        {
+            _showingCardsIds.RemoveAt(0);
+            if(_showingCardsIds.Count == 0)
+                EnableCardsInput(true);
+        }
+    }
+
+    private void CheckCards()
+    {
+        bool sameIds = true;
+        var firstCardId = _showingCardsIds[0];
+        
+        foreach(var cardId in _showingCardsIds)
+            sameIds = cardId.ID == firstCardId.ID;
+        
+        if (!sameIds)
+        {
+            StartCoroutine(WaitThen(() =>
+            {
+                foreach (var cardId in _showingCardsIds)
+                    cardId.Hide();
+            },restartCardsWaitTime));
+        }
+        else
+        {
+            StartCoroutine(WaitThen( () =>
+            {
+                foreach (var cardId in _showingCardsIds)
+                    cardId.Disable();
+                _showingCardsIds.Clear();
+                EnableCardsInput(true);
+            },restartCardsWaitTime));
+            CheckAllCards();
+        }
+    }
+
+    private void CheckAllCards()
+    {
+        
+    }
+
+    private IEnumerator WaitThen(Action callback, float waitTime)
+    {
+       yield return new WaitForSeconds(waitTime);
+       callback?.Invoke();
     }
 
     private bool ValidateCards()
     {
-        return _cardsSprites.Length >= _cards.Count && 
-               _spritesSelected.Count == cardsSecondRow.transform.childCount;
+        return _cardsSprites.Length >= _cards.Count;
     }
 
     private int GetRandomIndex(int max)

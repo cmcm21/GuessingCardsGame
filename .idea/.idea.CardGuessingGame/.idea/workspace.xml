@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="91db279b-2993-4102-9e3e-50de204cd6bd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CardGuessingGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CardPrefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CardPrefab.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CardsManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Tile.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,10 +93,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="8020">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="8020" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -123,6 +122,8 @@
       <workItem from="1664945187456" duration="3821000" />
       <workItem from="1665029792186" duration="3539000" />
       <workItem from="1665116884609" duration="2633000" />
+      <workItem from="1665120841426" duration="85000" />
+      <workItem from="1665209005750" duration="4697000" />
     </task>
     <servers />
   </component>
@@ -145,37 +146,5 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/GameManager.cs</url>
-          <line>33</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\GameManager.cs" initialLine="33" containingFunctionPresentation="method 'DataManager_OnDataLoaded'">
-            <startOffsets>
-              <option value="897" />
-            </startOffsets>
-            <endOffsets>
-              <option value="939" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/Tile.cs</url>
-          <line>100</line>
-          <properties documentPath="C:\Users\layca\OneDrive\Documentos\unityProjects\PatrickFeliciaBooks\CardGuessingGame\Assets\Scripts\Tile.cs" initialLine="97" containingFunctionPresentation="method 'FadeOut'">
-            <startOffsets>
-              <option value="2725" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2807" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
