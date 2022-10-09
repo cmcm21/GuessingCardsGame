@@ -638,8 +638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7d1860bdef65364e800a03a7286ce0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardsReference:
-    m_AssetGUID: d4746e97829e8264892d6cf78db5fd03
+  gameplayDataReference:
+    m_AssetGUID: 8a6241da6e5641042b96cb6b05b4dcb7
     m_SubObjectName: 
     m_SubObjectType: 
 --- !u!4 &539517609

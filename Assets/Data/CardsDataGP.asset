@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b5e8dccae430e341b077265c6abd8b9, type: 3}
-  m_Name: cardsData
+  m_Name: CardsDataGP
   m_EditorClassIdentifier: 
   sprites:
   - {fileID: 21300000, guid: 9e87db37aa87a124b96a70f3fa3bd476, type: 3}

@@ -89,7 +89,10 @@ public class CardsAnimator : MonoBehaviour
         yield return new WaitForSeconds(animationCardToTargetTime);
 
         for (int i = 0; i < _cards.Count; i++)
+        {
+            AudioManager.PlayPositionalSfx(ClipId.SFX_CARD_PLACE,_cardsPositions[i]);
             yield return AnimateCardToPosition(_cards[i], _cardsPositions[i]);
+        }
 
         OnCardsAnimationFinish?.Invoke();
     }

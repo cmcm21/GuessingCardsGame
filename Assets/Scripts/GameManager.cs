@@ -1,14 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Data;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private AssetReference cardsReference;
+    [SerializeField] private AssetReference gameplayDataReference;
     private DataManager _dataManager;
     public CardsDataLoaded OnCardsCardsDataLoaded;
 
@@ -16,12 +13,22 @@ public class GameManager : MonoBehaviour
     {
         _dataManager = new DataManager();
         _dataManager.OnCardsDataLoaded += DataManager_OnDataLoaded;
-        _dataManager.OnDataLoadFail += DataManager_OnDataLoadFail;
+        _dataManager.OnCardsDataLoadCardsFail += DataManager_OnDataLoadFail;
     }
 
     private void Start()
     {
-        _dataManager.Init(cardsReference);
+        _dataManager.Init(gameplayDataReference);
+        var cardManager = FindObjectOfType<CardsManager>();
+        if(cardManager != null)
+            cardManager.OnAllCardsMatched += CardManager_OnAllCardsMatched;
+        else
+            Debug.LogError($"[{GetType()}]::CardManager is null");
+    }
+
+    private void CardManager_OnAllCardsMatched()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void DataManager_OnDataLoadFail(string message)

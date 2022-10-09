@@ -1,18 +1,15 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using Unity.Mathematics;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 
-public delegate void TurnAnimationFinished(Tile tile);
-public enum TileState {SHOWED, HIDED, ANIMATING}
+public delegate void TurnAnimationFinished(CardTile cardTile);
+public enum TileState {SHOWED, HIDED, ANIMATING,DISABLED}
 public enum TileInputState {ENABLE, DISABLE}
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class Tile : MonoBehaviour
+public class CardTile : MonoBehaviour
 {
     [SerializeField] private Sprite hiddenSprite;
     [SerializeField] private float animationDuration = 0.5f;
@@ -68,7 +65,8 @@ public class Tile : MonoBehaviour
 
     public void Disable()
     {
-       gameObject.SetActive(false); 
+        _state = TileState.DISABLED;
+        gameObject.SetActive(false); 
     }
 
     private IEnumerator TurnAnimation(bool show)

@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f58be7e6459749c5bb23b9811d1f143f, type: 3}
+  m_Name: Gameplay data
+  m_EditorClassIdentifier: 
+  _cardsData: {fileID: 11400000, guid: d4746e97829e8264892d6cf78db5fd03, type: 2}
+  _audioData: {fileID: 11400000, guid: 4816aa577cc02db42a03b4c4d4b5be1f, type: 2}

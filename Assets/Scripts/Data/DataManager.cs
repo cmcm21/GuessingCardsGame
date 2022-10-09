@@ -7,32 +7,29 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 namespace Data
 {
     public delegate void CardsDataLoaded(CardsData cardsData);
-    public delegate void LoadDataFail(string message);
+    public delegate void LoadCardsDataFail(string message);
 
     public class DataManager
     {
-        private CardsData _cardsData;
         public CardsDataLoaded OnCardsDataLoaded;
-        public LoadDataFail OnDataLoadFail;
-        private AsyncOperationHandle<CardsData> _asyncCardsOperationHandle;
+        public LoadCardsDataFail OnCardsDataLoadCardsFail;
+        private AsyncOperationHandle<GameplayData> _asyncCardsOperationHandle;
 
-        public void Init(AssetReference cardsReference)
+        public void Init(AssetReference gameplayDataReference)
         {
-            _asyncCardsOperationHandle = Addressables.LoadAssetAsync<CardsData>(cardsReference);
+            _asyncCardsOperationHandle = Addressables.LoadAssetAsync<GameplayData>(gameplayDataReference);
             _asyncCardsOperationHandle.Completed += AsyncCardsOperationHandleOnCompleted;
         }
 
-        private void AsyncCardsOperationHandleOnCompleted(AsyncOperationHandle<CardsData> obj)
+        private void AsyncCardsOperationHandleOnCompleted(AsyncOperationHandle<GameplayData> obj)
         {
             if (obj.Status == AsyncOperationStatus.Succeeded)
             {
-                _cardsData = obj.Result;
-                OnCardsDataLoaded?.Invoke(obj.Result); 
+                OnCardsDataLoaded?.Invoke(obj.Result.cardsData); 
+                AudioManager.Init(obj.Result.audioData);
             }
             else 
-            {
-                OnDataLoadFail?.Invoke(obj.OperationException.Message); 
-            }
+                OnCardsDataLoadCardsFail?.Invoke(obj.OperationException.Message); 
         }
 
         public void DisposeCardsData()

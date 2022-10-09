@@ -22,6 +22,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Cards
+    - Gameplay
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 4816aa577cc02db42a03b4c4d4b5be1f
+    m_Address: Assets/Data/AudioDataGP.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Gameplay
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 8a6241da6e5641042b96cb6b05b4dcb7
+    m_Address: Assets/Data/Gameplay data.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Gameplay
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0

@@ -8,6 +8,8 @@ using Random = System.Random;
 using UnityRandom = UnityEngine.Random;
 
 public delegate void CardsLoaded(List<GameObject> cards);
+
+public delegate void AllCardsMatched();
 public enum CardsManagerState {STARTED,LOADING}
 public class CardsManager : MonoBehaviour
 {
@@ -19,24 +21,26 @@ public class CardsManager : MonoBehaviour
     private Sprite[] _cardsSprites;
     private List<GameObject> _cardsGos;
     public List<GameObject> CardsGos => _cardsGos;
-    private List<Tile> _cards;
-    private List<Tile> _showingCardsIds;
+    private List<CardTile> _cards;
+    private List<CardTile> _showingCardsIds;
     private List<int> _spritesSelected;
     private CardsManagerState _state;
     public CardsManagerState State => _state;
 
     public CardsLoaded OnCardsLoaded;
+    public AllCardsMatched OnAllCardsMatched;
+    
     private CardsAnimator _cardsAnimator;
     private float2 _cardSize = float2.zero;
     public float2 CardSize => _cardSize;
 
     private void Awake()
     {
-        _cards = new List<Tile>();
+        _cards = new List<CardTile>();
         _cardsGos = new List<GameObject>();
         _spritesSelected = new List<int>();
         _state = CardsManagerState.LOADING;
-        _showingCardsIds = new List<Tile>();
+        _showingCardsIds = new List<CardTile>();
     }
 
     private void Start()
@@ -101,7 +105,7 @@ public class CardsManager : MonoBehaviour
             for (int j = i; j <= i + 1; j++)
             {
                 var child = cardsContainer.transform.GetChild(j);
-                var tile = child.GetComponent<Tile>();
+                var tile = child.GetComponent<CardTile>();
                 if (tile != null)
                     InitTile(tile,child.gameObject,randomIndex);
 
@@ -112,27 +116,27 @@ public class CardsManager : MonoBehaviour
         return true;
     }
     
-    private void InitTile(Tile tile, GameObject tileGo, int randomIndex)
+    private void InitTile(CardTile cardTile, GameObject tileGo, int randomIndex)
     {
-         tile.Init(_cardsSprites[randomIndex],randomIndex);
-         _cards.Add(tile);
+         cardTile.Init(_cardsSprites[randomIndex],randomIndex);
+         _cards.Add(cardTile);
          _cardsGos.Add(tileGo);
          tileGo.gameObject.SetActive(true);
-         tile.OnTurnAnimationFinished += Tile_OnTurnAnimationFinished;
+         cardTile.OnTurnAnimationFinished += Tile_OnTurnAnimationFinished;
     }
     
-    private void Tile_OnTurnAnimationFinished(Tile tile)
+    private void Tile_OnTurnAnimationFinished(CardTile cardTile)
     {
-        if (tile.state == TileState.SHOWED)
+        if (cardTile.state == TileState.SHOWED)
         {
-           _showingCardsIds.Add(tile);
+           _showingCardsIds.Add(cardTile);
            if (_showingCardsIds.Count.Equals(comparedCards))
            {
                EnableCardsInput(false); 
                CheckCards();
            }
         }
-        else if (tile.state == TileState.HIDED && _showingCardsIds.Count > 0)
+        else if (cardTile.state == TileState.HIDED && _showingCardsIds.Count > 0)
         {
             _showingCardsIds.RemoveAt(0);
             if(_showingCardsIds.Count == 0)
@@ -149,29 +153,51 @@ public class CardsManager : MonoBehaviour
             sameIds = cardId.ID == firstCardId.ID;
         
         if (!sameIds)
-        {
-            StartCoroutine(WaitThen(() =>
-            {
-                foreach (var cardId in _showingCardsIds)
-                    cardId.Hide();
-            },restartCardsWaitTime));
-        }
+            DoOnCardsMismatch();
         else
-        {
-            StartCoroutine(WaitThen( () =>
-            {
-                foreach (var cardId in _showingCardsIds)
-                    cardId.Disable();
-                _showingCardsIds.Clear();
-                EnableCardsInput(true);
-            },restartCardsWaitTime));
-            CheckAllCards();
-        }
+            DoOnCardsMatch();
     }
+
+    private void DoOnCardsMismatch()
+    {
+        StartCoroutine(WaitThen(() =>
+        {
+            foreach (var cardId in _showingCardsIds)
+                cardId.Hide();
+            
+            AudioManager.PlaySfx(ClipId.SFX_CARDS_MISMATCH); 
+            
+        },restartCardsWaitTime));       
+    }
+
+    private void DoOnCardsMatch()
+    {
+        StartCoroutine(WaitThen( () =>
+        {
+            foreach (var cardId in _showingCardsIds)
+                cardId.Disable();
+            
+            _showingCardsIds.Clear();
+            EnableCardsInput(true);
+            
+            AudioManager.PlaySfx(ClipId.SFX_CARDS_MATCH);
+            CheckAllCards();       
+            
+        },restartCardsWaitTime));
+    }
+    
+    
 
     private void CheckAllCards()
     {
-        
+        int counter = 0;
+        foreach(var card in _cards)
+            if (card.state == TileState.DISABLED)
+                counter++;
+
+        Debug.Log($"[{GetType()}]:: cards disabled: {counter}");
+        if (counter == _cards.Count)
+            StartCoroutine(WaitThen(() => OnAllCardsMatched?.Invoke(), startWaitTime));
     }
 
     private IEnumerator WaitThen(Action callback, float waitTime)
