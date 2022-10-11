@@ -81,7 +81,6 @@ public class CardsAnimator : MonoBehaviour
     {
         for (int i = 0; i < _cards.Count; i++)
             _cards[i].transform.position = _cardsPositions[i];
-        OnCardsAnimationFinish?.Invoke();
     }
 
     private IEnumerator AnimateCards()

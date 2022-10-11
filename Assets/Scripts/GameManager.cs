@@ -1,3 +1,4 @@
+using System;
 using Data;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -6,19 +7,17 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private AssetReference gameplayDataReference;
-    private DataManager _dataManager;
     public CardsDataLoaded OnCardsCardsDataLoaded;
 
     private void Awake()
     {
-        _dataManager = new DataManager();
-        _dataManager.OnCardsDataLoaded += DataManager_OnDataLoaded;
-        _dataManager.OnCardsDataLoadCardsFail += DataManager_OnDataLoadFail;
+        DataManager.OnCardsDataLoaded += DataManager_OnDataLoaded;
+        DataManager.OnCardsDataLoadCardsFail += DataManager_OnDataLoadFail;
     }
 
     private void Start()
     {
-        _dataManager.Init(gameplayDataReference);
+        DataManager.Init(gameplayDataReference);
         var cardManager = FindObjectOfType<CardsManager>();
         if(cardManager != null)
             cardManager.OnAllCardsMatched += CardManager_OnAllCardsMatched;
@@ -39,5 +38,12 @@ public class GameManager : MonoBehaviour
     private void DataManager_OnDataLoaded(CardsData cardsdata)
     {
         OnCardsCardsDataLoaded?.Invoke(cardsdata);
+    }
+
+    private void OnDestroy()
+    {
+        DataManager.OnCardsDataLoadCardsFail -= DataManager_OnDataLoadFail;
+        DataManager.OnCardsDataLoaded -= DataManager_OnDataLoaded;
+        DataManager.DisposeData();
     }
 }

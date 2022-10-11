@@ -8,9 +8,12 @@ using Random = System.Random;
 using UnityRandom = UnityEngine.Random;
 
 public delegate void CardsLoaded(List<GameObject> cards);
-
+public delegate void CardsMatch();
+public delegate void CardsMismatch();
 public delegate void AllCardsMatched();
+
 public enum CardsManagerState {STARTED,LOADING}
+
 public class CardsManager : MonoBehaviour
 {
     [SerializeField] private GameObject cardsContainer;
@@ -29,6 +32,9 @@ public class CardsManager : MonoBehaviour
 
     public CardsLoaded OnCardsLoaded;
     public AllCardsMatched OnAllCardsMatched;
+    public CardsMismatch OnCardsMismatch;
+    public CardsMatch OnCardsMatch;
+    public CardsAnimationFinish OnCardsAnimationFinished;
     
     private CardsAnimator _cardsAnimator;
     private float2 _cardSize = float2.zero;
@@ -54,24 +60,25 @@ public class CardsManager : MonoBehaviour
          if(_cardsAnimator == null) 
              Debug.LogError($"[{GetType()}]:: _cardsAnimator is null");
          else
-             _cardsAnimator.OnCardsAnimationFinish += OnCardsAnimationFinish;
+             _cardsAnimator.OnCardsAnimationFinish += CardsAnimator_OnCardsAnimationFinish;
 
          var gameManager = FindObjectOfType<GameManager>();
          if(gameManager == null)
              Debug.LogError($"[{GetType()}]:: game manager is null");
          else
-             gameManager.OnCardsCardsDataLoaded += OnCardsCardsDataLoaded;
+             gameManager.OnCardsCardsDataLoaded += GameManager_OnCardsCardsDataLoaded;
     }
 
-    private void OnCardsCardsDataLoaded(CardsData cardsData)
+    private void GameManager_OnCardsCardsDataLoaded(CardsData cardsData)
     {
         _cardsSprites = cardsData.Sprites;
         InitCards();
     }
 
-    private void OnCardsAnimationFinish()
+    private void CardsAnimator_OnCardsAnimationFinish()
     {
         EnableCardsInput(true);
+        OnCardsAnimationFinished?.Invoke();
     }
 
     private void EnableCardsInput(bool value)
@@ -166,6 +173,7 @@ public class CardsManager : MonoBehaviour
                 cardId.Hide();
             
             AudioManager.PlaySfx(ClipId.SFX_CARDS_MISMATCH); 
+            OnCardsMismatch?.Invoke(); 
             
         },restartCardsWaitTime));       
     }
@@ -182,6 +190,7 @@ public class CardsManager : MonoBehaviour
             
             AudioManager.PlaySfx(ClipId.SFX_CARDS_MATCH);
             CheckAllCards();       
+            OnCardsMatch?.Invoke(); 
             
         },restartCardsWaitTime));
     }
